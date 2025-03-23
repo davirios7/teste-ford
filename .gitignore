@@ -44,9 +44,6 @@ coverage.xml
 *.cover
 *.hypothesis/
 
-# Teste de CI/CD (GitHub Actions, Travis, etc.)
-*.yml
-
 # Outros arquivos específicos de
 .env
 entrypoint.sh
