@@ -1,5 +1,4 @@
 from pydantic_settings import BaseSettings
-from pydantic import ConfigDict
 
 
 class Settings(BaseSettings):
@@ -9,7 +8,8 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int
 
     class Config:
-        config = ConfigDict(env_file=".env", extra="allow")
+        env_file = ".env"
+        extra = "allow"
 
 
 settings = Settings()
