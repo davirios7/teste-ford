@@ -16,11 +16,6 @@ env/
 *.pkl
 *.log
 
-# Docker
-*.dockerignore
-Dockerfile
-docker-compose.yml
-
 # Docker volumes
 docker-volume/
 
@@ -43,7 +38,3 @@ nosetests.xml
 coverage.xml
 *.cover
 *.hypothesis/
-
-# Outros arquivos específicos de
-.env
-entrypoint.sh

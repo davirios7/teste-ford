@@ -1,0 +1,43 @@
+services:
+  app:
+    build: .
+    container_name: teste-ford-davi
+    depends_on:
+      - db
+      - redis
+    entrypoint: ["sh", "/app/entrypoint.sh"]
+    ports:
+      - "8001:8001"
+    environment:
+      DATABASE_URL: "postgresql://admin:admin@db:5432/teste-ford"
+      REDIS_URL: "redis://redis:6379/0"
+    volumes:
+      - .:/app
+    restart: always
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: teste-ford
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+    container_name: redis_cache
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
