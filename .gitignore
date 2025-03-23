@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Virtualenv
+venv/
+env/
+.venv/
+.env/
+
+# FastAPI (arquivos específicos)
+*.pkl
+*.log
+
+# Docker
+*.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Docker volumes
+docker-volume/
+
+# Pipenv
+Pipfile.lock
+
+# Distribuições de pacotes Python
+*.egg-info/
+dist/
+build/
+eggs/
+.wheelhouse/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Pytest
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.hypothesis/
+
+# Teste de CI/CD (GitHub Actions, Travis, etc.)
+*.yml
+
+# Outros arquivos específicos de
+.env
+entrypoint.sh
