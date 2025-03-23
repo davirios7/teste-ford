@@ -17,28 +17,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2  # Faz o checkout do código
       
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.13.2'
-
-      - name: Create and activate virtual environment
-        run: |
-          python -m venv venv  # Cria o ambiente virtual
-          source venv/bin/activate  # Ativa o ambiente virtual
-
-      - name: Install dependencies
-        run: |
-          source venv/bin/activate  # Ativa novamente, caso o ambiente não tenha sido persistido
-          pip install -r requirements.txt  # Instala as dependências do arquivo requirements.txt
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1  # Configura o Buildx para construção multi-plataforma
 
       - name: Build Docker image
-        run: docker build -t teste-ford-davi .  # Construa a imagem Docker
+        run: docker build -t teste-ford-davi . # Construa a imagem Docker
 
       - name: Run tests inside Docker container
         run: |
           docker run -d -p 8000:8000 teste-ford-davi  # Inicie o container
-          docker exec -it $(docker ps -q) pytest  # Execute os testes dentro do container
+          docker exec $(docker ps -q) pytest  # Execute os testes dentro do container
 
   # Job de Deploy (CD)
   deploy:
